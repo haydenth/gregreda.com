@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Greg Reda</title><link href="http://www.gregreda.com/" rel="alternate"></link><link href="http://www.gregreda.com/feeds/tag/pandas.atom.xml" rel="self"></link><id>http://www.gregreda.com/</id><updated>2013-01-23T00:00:00-06:00</updated><entry><title>Translating SQL to Pandas, Part 1</title><link href="http://www.gregreda.com/2013/01/23/translating-sql-to-pandas-part1" rel="alternate"></link><updated>2013-01-23T00:00:00-06:00</updated><author><name>Greg Reda</name></author><id>tag:www.gregreda.com,2013-01-23:2013/01/23/translating-sql-to-pandas-part1</id><summary type="html">&lt;p&gt;For some reason, I've always found SQL to a much more intuitive tool for exploring a tabular dataset than I have other languages (namely R and Python).&lt;/p&gt;
+&lt;p&gt;If you know SQL well, you can do a whole lot with it, and since data is often in a relational database anyway, it usually makes sense to stick with it.  I find that my workflow often includes writing a lot of queries in SQL (using &lt;a href="http://www.sequelpro.com/"&gt;Sequel Pro&lt;/a&gt;) to get the data the way I want it, reading it into R (with &lt;a href="http://www.rstudio.com/"&gt;RStudio&lt;/a&gt;), and then maybe a bit more exploration, modeling, and visualization (with &lt;a href="http://ggplot2.org/"&gt;ggplot2&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Not too long ago though, I came across &lt;a href="http://blog.wesmckinney.com/"&gt;Wes McKinney&lt;/a&gt;'s &lt;a href="http://pandas.pydata.org"&gt;pandas&lt;/a&gt; package and my interest was immediately piqued.  Pandas adds a bunch of functionality to Python, but most importantly, it allows for a DataFrame data structure - much like a database table or R's data frame.&lt;/p&gt;
+&lt;p&gt;Given the great things I've been reading about pandas lately, I wanted to make a conscious effort to play around with it.  Instead of my typical workflow being a couple disjointed steps with SQL + R + (sometimes) Python, my thought is that it might make sense to have pandas work its way in and take over the R work.  While I probably won't be able to completely give up R (too much ggplot2 love over here), I get bored if I'm not learning something new, so pandas it is.&lt;/p&gt;
+&lt;p&gt;I intend to document the process a bit - hopefully a couple posts illustrating the differences between SQL and pandas (and maybe some R too).&lt;/p&gt;
+&lt;p&gt;Throughout the rest of this post, we're going to be working with data from the &lt;a href="https://data.cityofchicago.org"&gt;City of Chicago's open data&lt;/a&gt; - specifically the &lt;a href="https://data.cityofchicago.org/Transportation/Towed-Vehicles/ygr5-vcbg"&gt;Towed Vechicles data&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Loading the data&lt;/h4&gt;
+&lt;h5&gt;Using SQLite&lt;/h5&gt;
+&lt;p&gt;To be able to use SQL with this dataset, we'd first have to create the table.  Using &lt;a href="http://www.sqlite.org/"&gt;SQLite&lt;/a&gt; syntax, we'd run the following:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;tow_date&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;style&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;plate&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="k"&gt;state&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;towed_address&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;phone&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;inventory&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Because SQLite &lt;a href="http://www.sqlite.org/datatype3.html"&gt;uses a very generic type system&lt;/a&gt;, we don't get the strict data types that we would in most other databases (such as MySQL and PostgreSQL); therefore, all of our data is going to be stored as text.  In other databases, we'd store tow_date as a date or datetime field.&lt;/p&gt;
+&lt;p&gt;Before we read the data into SQLite, we need to tell the database to that the fields are separated by a comma.  Then we can use the import command to read the file into our table.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;separator&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Towed_Vehicles&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;csv&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that the downloaded CSV contains two header rows, so we'll need to delete those from our table since we don't need them.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;DELETE&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;tow_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Tow Date&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We should have 5,068 records in our table now (note: the City of Chicago regularly updates this dataset, so you might get a different number).&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="k"&gt;COUNT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;-- 5068&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Using Python + pandas&lt;/h5&gt;
+&lt;p&gt;Let do the same with &lt;a href="http://pandas.pydata.org"&gt;pandas&lt;/a&gt; now.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="n"&gt;col_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tow_date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;make&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;style&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;plate&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;state&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;towed_address&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;phone&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;inventory&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Towed_Vehicles.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;col_names&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;skiprows&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;parse_dates&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tow_date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The read_csv function in pandas actually allowed us to skip the two header columns and translate the tow_date field to a datetime field.&lt;/p&gt;
+&lt;p&gt;Let's check our count just to make sure.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# 5068&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Selecting data&lt;/h4&gt;
+&lt;h5&gt;SQL&lt;/h5&gt;
+&lt;p&gt;Selection data with SQL is fairly intuitive - just SELECT the columns you want FROM the particular table you're interested in.  You can also take advantage of the LIMIT clause to only see a subset of your data.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;-- Return every column for every record in the towed table&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- Return the tow_date, make, style, model, and color for every record in the towed table&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;tow_date&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- Return every column for the first five records of the towed table&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="k"&gt;LIMIT&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- Return every column in the towed table - start at the fifth record and show the next ten&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="k"&gt;LIMIT&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;-- records 5-14&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Additionally, you can throw a WHERE or ORDER BY (or both) into your queries for proper filtering and ordering of the data returned:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="k"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;TX&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;-- Only towed vehicles from Texas&lt;/span&gt;
+
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;KIA&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;AND&lt;/span&gt; &lt;span class="k"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;TX&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;-- KIAs with Texas plates&lt;/span&gt;
+
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;towed&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;KIA&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;-- All KIAs ordered by color (A to Z)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Python + pandas&lt;/h5&gt;
+&lt;p&gt;Let's do some of the same, but this time let's use pandas:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# show only the make column for all records&lt;/span&gt;
+&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;make&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# tow_date, make, style, model, and color for the first ten records&lt;/span&gt;
+&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tow_date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;make&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;style&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]][:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c"&gt;# first five rows (alternatively, you could use towed.head())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Because pandas is built on top of &lt;a href="http://www.numpy.org/"&gt;NumPy&lt;/a&gt;, we're able to use &lt;a href="http://pandas.pydata.org/pandas-docs/dev/indexing.html#boolean-indexing"&gt;boolean indexing&lt;/a&gt;.  Since we're going to replicate similar statements to the ones we did in SQL, we know we're going to need towed cars from TX made by KIA.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;state&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;TX&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c"&gt;# all columns and records where the car was from TX&lt;/span&gt;
+
+&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;state&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;TX&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;make&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;KIA&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="c"&gt;# made by KIA AND from TX&lt;/span&gt;
+
+&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;state&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;MA&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;make&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;JAGU&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="c"&gt;# made by Jaguar OR from MA&lt;/span&gt;
+
+&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;towed&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;make&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;KIA&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# made by KIA, ordered by color (A to Z)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Conclusion, Part 1&lt;/h5&gt;
+&lt;p&gt;This was obviously a very basic start, but there are a lot of good things about pandas - it's certainly concise and readable.  Plus, since it works well with the various science + math packages (&lt;a href="http://www.scipy.org"&gt;SciPy&lt;/a&gt;, &lt;a href="http://www.numpy.org/"&gt;NumPy&lt;/a&gt;, &lt;a href="http://matplotlib.org/"&gt;Matplotlib&lt;/a&gt;, &lt;a href="http://statsmodels.sourceforge.net/"&gt;statsmodels&lt;/a&gt;, etc.), there's the potential to work almost entirely in one language for analysis tasks.&lt;/p&gt;
+&lt;p&gt;I plan on covering aggregate functions, pivots, and maybe some matplotlib in my next post.&lt;/p&gt;</summary><category term="sql"></category><category term="python"></category><category term="pandas"></category></entry></feed>
