@@ -84,6 +84,7 @@ section#content {
 }
 #social {
 	text-align: center;
+	padding-bottom: 10px;
 }
 a, a:visited {
 	text-decoration: none;
