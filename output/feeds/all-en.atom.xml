@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Greg Reda</title><link href="http://www.gregreda.com/" rel="alternate"></link><link href="http://www.gregreda.com/feeds/all-en.atom.xml" rel="self"></link><id>http://www.gregreda.com/</id><updated>2013-04-29T22:37:03-05:00</updated><entry><title>More web scraping with Python (and a map)</title><link href="http://www.gregreda.com/2013/04/29/more-web-scraping-with-python" rel="alternate"></link><updated>2013-04-29T22:37:03-05:00</updated><author><name>Greg Reda</name></author><id>tag:www.gregreda.com,2013-04-29:2013/04/29/more-web-scraping-with-python</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a follow-up to my &lt;a href="http://www.gregreda.com/2013/03/03/web-scraping-101-with-python/" title="Web Scraping 101 with Python"&gt;previous post&lt;/a&gt; about web scraping with Python&lt;/em&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Greg Reda</title><link href="http://www.gregreda.com/" rel="alternate"></link><link href="http://www.gregreda.com/feeds/all-en.atom.xml" rel="self"></link><id>http://www.gregreda.com/</id><updated>2013-06-03T00:00:00-05:00</updated><entry><title>Join vs Exists vs In (SQL)</title><link href="http://www.gregreda.com/2013/06/03/join-vs-exists-vs-in" rel="alternate"></link><updated>2013-06-03T00:00:00-05:00</updated><author><name>Greg Reda</name></author><id>tag:www.gregreda.com,2013-06-03:2013/06/03/join-vs-exists-vs-in</id><summary type="html">&lt;p&gt;Last weekend, I came across &lt;a href="http://en.wikipedia.org/wiki/Jeff_Atwood"&gt;Jeff Atwood&lt;/a&gt;'s excellent &lt;a href="http://www.codinghorror.com/blog/2007/10/a-visual-explanation-of-sql-joins.html"&gt;visual explanation of SQL joins&lt;/a&gt; on Hacker News.&lt;/p&gt;
+&lt;p&gt;It reminded me of teaching SQL to the incoming batch of &lt;a href="http://www.pwc.com/us/en/forensic-services/technology-solutions.jhtml"&gt;PwC FTS&lt;/a&gt; associates a few years ago.  Not many of them had prior programming experience, much less SQL exposure, so it was a fun week to learn how well us instructors could teach the topic.&lt;/p&gt;
+&lt;p&gt;Most of them intuitively picked up on how the IN clause worked, but struggled with EXISTS and JOINs initially.  An explanation that always seemed to help illustrate the concept was to show that often you can write the exact same query using an IN, EXISTS, or a JOIN.&lt;/p&gt;
+&lt;p&gt;As an example, let's assume the following two tables, which we'll call &lt;em&gt;tableA&lt;/em&gt; and &lt;em&gt;tableB&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;id&lt;/span&gt;  &lt;span class="n"&gt;name&lt;/span&gt;    &lt;span class="n"&gt;id&lt;/span&gt;  &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;  &lt;span class="o"&gt;----&lt;/span&gt;    &lt;span class="o"&gt;--&lt;/span&gt;  &lt;span class="o"&gt;----&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;   &lt;span class="n"&gt;Kenny&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;   &lt;span class="n"&gt;Analyst&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;   &lt;span class="n"&gt;Rob&lt;/span&gt;     &lt;span class="mi"&gt;2&lt;/span&gt;   &lt;span class="n"&gt;Sales&lt;/span&gt;
+&lt;span class="mi"&gt;4&lt;/span&gt;   &lt;span class="n"&gt;Molly&lt;/span&gt;   &lt;span class="mi"&gt;3&lt;/span&gt;   &lt;span class="n"&gt;Manager&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;   &lt;span class="n"&gt;Greg&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;   &lt;span class="n"&gt;John&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we wanted to get everyone that's an Analyst, we could do the following:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;    &lt;span class="n"&gt;tableA&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;   &lt;span class="n"&gt;tableA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="k"&gt;IN&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;tableB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;tableB&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Analyst&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- Returns 3 records - Kenny, Rob, and Greg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For those not very familiar with SQL, this should be relatively easy to understand.  We have written a &lt;a href="http://en.wikipedia.org/wiki/Correlated_subquery"&gt;subquery&lt;/a&gt; that will get the &lt;em&gt;id&lt;/em&gt; for the &lt;em&gt;Analyst&lt;/em&gt; title in &lt;em&gt;tableB&lt;/em&gt;.  Using IN, we can then grab all of the employees from &lt;em&gt;tableA&lt;/em&gt; who have that title.&lt;/p&gt;
+&lt;p&gt;While IN statements are fairly intuitive, they're often less efficient than the same query written as a JOIN or EXISTS statement would be.&lt;/p&gt;
+&lt;p&gt;To produce the same results as above, we can do the following:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;-- EXISTS&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;    &lt;span class="n"&gt;tableA&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;   &lt;span class="k"&gt;EXISTS&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;tableB&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Analyst&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;AND&lt;/span&gt; &lt;span class="n"&gt;tableA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tableB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- JOIN (INNER is the default when only JOIN is specified)&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;    &lt;span class="n"&gt;tableA&lt;/span&gt;
+&lt;span class="k"&gt;JOIN&lt;/span&gt;    &lt;span class="n"&gt;tableB&lt;/span&gt;
+    &lt;span class="k"&gt;ON&lt;/span&gt;  &lt;span class="n"&gt;tableA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tableB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;   &lt;span class="n"&gt;tableB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Analyst&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In most cases, EXISTS or JOIN will be much more efficient (and faster) than an IN statement.  Why?&lt;/p&gt;
+&lt;p&gt;When using an IN combined with a subquery, the database must process &lt;em&gt;the entire subquery&lt;/em&gt; first, then process the overall query as a whole, matching up based on the relationship specified for the IN.&lt;/p&gt;
+&lt;p&gt;With an EXISTS or a JOIN, the database will return true/false while checking the relationship specified.  Unless the table in the subquery is &lt;em&gt;very&lt;/em&gt; small, EXISTS or JOIN will perform much better than IN.&lt;/p&gt;
+&lt;p&gt;Furthermore, writing the query as a JOIN gives us some additional flexibility to easily return all of the employees if we'd like, or to even check for employees who do not have a title (orphan records).&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;-- Return employees and display their title&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;    &lt;span class="n"&gt;tableA&lt;/span&gt;
+&lt;span class="k"&gt;JOIN&lt;/span&gt;    &lt;span class="n"&gt;tableB&lt;/span&gt;
+    &lt;span class="k"&gt;ON&lt;/span&gt;  &lt;span class="n"&gt;tableA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tableB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;-- 1 Kenny  1 Analyst&lt;/span&gt;
+&lt;span class="c1"&gt;-- 1 Rob    1 Analyst&lt;/span&gt;
+&lt;span class="c1"&gt;-- 1 Greg   1 Analyst&lt;/span&gt;
+&lt;span class="c1"&gt;-- 2 John   2 Sales&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- Which employees do not have a title?&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;    &lt;span class="n"&gt;tableA&lt;/span&gt;
+&lt;span class="k"&gt;LEFT&lt;/span&gt; &lt;span class="k"&gt;JOIN&lt;/span&gt;   &lt;span class="n"&gt;tableB&lt;/span&gt;
+    &lt;span class="k"&gt;ON&lt;/span&gt;  &lt;span class="n"&gt;tableA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tableB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;   &lt;span class="n"&gt;tableB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="k"&gt;IS&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;-- 4 Molly  NULL NULL&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In the first query above, Molly falls out because she does not have a title.  If we would have liked her to appear in the record set, we could simply change the JOIN to a LEFT JOIN and she would appear with NULL data from &lt;em&gt;tableB&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;If you have many IN statements littered throughout your code, you should compare the performance of these queries against an EXISTS or JOIN version of the same query - you'll likely see performance gains.&lt;/p&gt;
+&lt;p&gt;I hope this illustrated some of the subtle differences between INs, EXISTS, and JOINs.  Questions and feedback in the comments are appreciated.&lt;/p&gt;</summary><category term="sql"></category><category term="database"></category></entry><entry><title>More web scraping with Python (and a map)</title><link href="http://www.gregreda.com/2013/04/29/more-web-scraping-with-python" rel="alternate"></link><updated>2013-04-29T20:37:03-05:00</updated><author><name>Greg Reda</name></author><id>tag:www.gregreda.com,2013-04-29:2013/04/29/more-web-scraping-with-python</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a follow-up to my &lt;a href="http://www.gregreda.com/2013/03/03/web-scraping-101-with-python/" title="Web Scraping 101 with Python"&gt;previous post&lt;/a&gt; about web scraping with Python&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Previously, I wrote a basic intro to scraping data off of websites.  Since I wanted to keep the intro fairly simple, I didn't cover storing the data.  In this post, I'll cover the basics of writing the scraped data to a flat file and then take things a bit further from there.&lt;/p&gt;
 &lt;p&gt;Last time, we used the Chicago Reader's Best of 2011 list, but let's change it up a bit this time and scrape a different site.  Why?  Because scrapers break, so we might as well practice a little bit more by scraping something different.&lt;/p&gt;
 &lt;p&gt;In this post, we're going to use the data from &lt;a href="http://www.chicagomag.com/Chicago-Magazine/November-2012/Best-Sandwiches-Chicago/"&gt;Chicago Magazine's Best Sandwiches list&lt;/a&gt; because ... who doesn't like sandwiches?&lt;/p&gt;
