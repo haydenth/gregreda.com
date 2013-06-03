@@ -24,17 +24,17 @@
 
 /*Monokai*/
 .codehilite { background-color: #49483e !important; }
-.codehilite .c { color: #75715e !important; } /* Comment */
+.codehilite .c { color: #968f71 !important; } /* Comment */
 .codehilite .err { color: #960050 !important; background-color: #1e0010 !important; } /* Error */
 .codehilite .k { color: #66d9ef !important; } /* Keyword */
 .codehilite .l { color: #ae81ff !important; } /* Literal */
 .codehilite .n { color: #f8f8f2 !important; } /* Name */
 .codehilite .o { color: #f92672 !important; } /* Operator */
 .codehilite .p { color: #f8f8f2 !important; } /* Punctuation */
-.codehilite .cm { color: #75715e !important; } /* Comment.Multiline */
-.codehilite .cp { color: #75715e !important; } /* Comment.Preproc */
-.codehilite .c1 { color: #75715e !important; } /* Comment.Single */
-.codehilite .cs { color: #75715e !important; } /* Comment.Special */
+.codehilite .cm { color: #968f71 !important; } /* Comment.Multiline */
+.codehilite .cp { color: #968f71 !important; } /* Comment.Preproc */
+.codehilite .c1 { color: #968f71 !important; } /* Comment.Single */
+.codehilite .cs { color: #968f71 !important; } /* Comment.Special */
 .codehilite .ge { font-style: italic !important; } /* Generic.Emph */
 .codehilite .gs { font-weight: bold !important; } /* Generic.Strong */
 .codehilite .kc { color: #66d9ef !important; } /* Keyword.Constant */
