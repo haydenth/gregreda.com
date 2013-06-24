@@ -2,7 +2,7 @@
 {% block title %}{{ SITENAME }} | {{ article.title }}{% endblock %}
 {% block content %}
 
-  <h3 class="article-title"><a href="{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h3>
+  <h3 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h3>
   <h6 class="article-date">{{ article.locale_date }}</h6>
   <div class="article-content">
     {{ article.content }}
