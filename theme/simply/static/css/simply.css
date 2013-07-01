@@ -65,6 +65,11 @@ section#content {
 
 }
 
+blockquote {
+	padding: 0px 20px 0px 20px !important;
+	border-left: 2px solid #ddd !important;
+}
+
 .codehilite {
 	font-family: "Source Code Pro", sans-serif;
 	font-size: 12px;
@@ -84,6 +89,7 @@ section#content {
 }
 #social {
 	text-align: center;
+	padding-bottom: 10px;
 }
 a, a:visited {
 	text-decoration: none;
