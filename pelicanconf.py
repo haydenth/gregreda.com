@@ -1,35 +1,33 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
+from __future__ import unicode_literals
 
-AUTHOR = u'Greg Reda'
-SITENAME = u'Greg Reda'
-SITEURL = 'http://www.gregreda.com'
+AUTHOR = u'Tom Hayden'
+SITENAME = u'Tom Hayden'
+SITEURL = ''
 TIMEZONE = 'America/Chicago'
-THEME = './theme/simply'
-SUMMARY_MAX_LENGTH = 50
-# AVATAR = './theme/images/avatar.jpg'
-TITLE = "Greg Reda: Data geek in Chicago."
-DESCRIPTION = "Greg Reda is a Chicagoan focused on analyzing data to provide insight and drive decisions. He also loves stats, visualization, beer, and music."
+DEFAULT_LANG = u'en'
 
-ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}'
-ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
-
-# DEFAULTS
-DEFAULT_LANG = 'en'
-DEFAULT_CATEGORY = 'misc'
-DEFAULT_DATE = 'fs'
-DEFAULT_DATE_FORMAT = '%B %d, %Y'
-DEFAULT_PAGINATION = False
-
-DISQUS_SITENAME = "gregreda"
-GOOGLE_ANALYTICS = "UA-34295039-1"
-DOMAIN = "gregreda.com"
-
-# FEEDS
+# Feed generation is usually not desired when developing
 FEED_ATOM = "feeds/all.atom.xml"
 CATEGORY_FEED_ATOM = "feeds/%s.atom.xml"
 TAG_FEED_ATOM = "feeds/tag/%s.atom.xml"
 
-# STATIC_PATHS = ["images"]
-# FILES_TO_COPY = (("extra/robots.txt", "robots.txt"), )
+ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}'
+ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
+# Blogroll
+LINKS =  (('Pelican', 'http://getpelican.com/'),
+          ('Python.org', 'http://python.org/'),
+          ('Jinja2', 'http://jinja.pocoo.org/'),
+          ('You can modify those links in your config file', '#'),)
+
+# Social widget
+SOCIAL = (('You can add links in your config file', '#'),
+          ('Another social link', '#'),)
+DEFAULT_PAGINATION = False
+
+
+# Uncomment following line if you want document-relative URLs when developing
+RELATIVE_URLS = True
+THEME = "./themes/tom"
