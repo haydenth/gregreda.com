@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <div id='article-title'>{{ article.title }}</div>
+  <div id='article-title'><a href='{{ article.url }}'>{{ article.title }}</a></div>
   <div id='article-body'>
     {{ article.content }}
   </div>

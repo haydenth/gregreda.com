@@ -1,3 +1,4 @@
+alert('hello');
 $(function() {
     if (typeof disableStyleCode != "undefined")
     {
