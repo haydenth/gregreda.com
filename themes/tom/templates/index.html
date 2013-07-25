@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  oh hi there
+
+  {% for article in articles %}
+     <div id="article">
+       <div id="article-title"><a href="{{ article.url }}" title="{{ article.title }}">
+          <i class="{{ article.icon }} icon-2x"></i>
+          {{ article.title }}
+       </a></div>
+       <h6 class="article-date">{{ article.locale_date }}</h6>
+     </div>
+  {% endfor %}
+
 {% endblock content %}

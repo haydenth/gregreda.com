@@ -1,3 +1,70 @@
 body {
-  background: gray;
+  background: white;
+}
+
+#content-header-icons {
+  background-color: white;
+  width: 100%;
+  text-align: right;
+  padding-top: 10px;
+}
+
+#content-header a {
+  color: black;
+}
+
+#content-header a:hover {
+  color: red;
+}
+
+#content-header {
+  background-color: white;
+  padding: 5px;
+  margin-left: 20px;
+  margin-top: 25px;
+  color: black;
+  float: left;
+  width: 325px; 
+}
+
+#content-header #myname {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+#content-header #thanks {
+  margin-top: 30px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#content-body {
+  position: absolute;
+  float: right;
+  margin-left: 370px; 
+  width: 720px;
+  background-color: white;
+}
+
+#article-body {
+  font-family: Arial;
+  font-size: 11pt;
+}
+
+#content-body h1 {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#article-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 20pt;
+}
+
+#article-title a {
+  color: black;
+  text-decoration: none;
+}
+
+#article-title a:hover {
+  color: red;
 }
