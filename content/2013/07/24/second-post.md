@@ -5,9 +5,31 @@ Icon: icon-level-up
 
 This is my second blog post
 
-`
-This even includes
-some samples of HTML
-`
+```
+for(var i = 0; i < sections.length; ++i) {
+  myCode = sections[i];
+  myCode.className = 'prettyprint';
+  prettyPrint();
+}
+```
 
-and other things. maybe an image of trees
+and other things. maybe an image of trees. Here's some php
+```
+mysql> select userid from authentication where lm2=1;
++--------------+
+| userid       |
++--------------+
+| thayden      |
+| lhatfield    |
+| chimes       |
+| gjackson     |
+| cczak        |
+| tnysen       |
+| kmoore       |
+| mhofer       |
+| josholig     |
+| upandrunning |
+| mdavis       |
+| ahunington   |
++--------------+
+```

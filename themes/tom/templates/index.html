@@ -6,11 +6,12 @@
      <div id="article">
        <div id="article-title">
           <a href="{{ article.url }}" title="{{ article.title }}">
-            <i class="{{ article.icon }} icon-2x"></i>
+            <i class="{{ article.icon }} icon-large"></i>
             {{ article.title }}
           </a>
          <div id="article-date">{{ article.locale_date }}</div>
        </div>
+       <div id="article-abstract">{{ article.abstract }} <a href='{{article.url}}'>Read</div>
      </div>
   {% endfor %}
 

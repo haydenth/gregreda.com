@@ -1,17 +1,8 @@
-alert('hello');
-$(function() {
-    if (typeof disableStyleCode != "undefined")
-    {
-        return;
-    }
-    var a = false;
-    $("code").each(function()
-    {
-        if (!$(this).hasClass("prettyprint"))
-        {
-            $(this).addClass("prettyprint");
-            a = true
-        }
-    });
-    if (a) { prettyPrint() }
-});
+// add "prettyprint" to all the <pre> tags
+var sections = document.getElementsByTagName('pre');
+for(var i = 0; i < sections.length; ++i) {
+  sections[i].className = 'prettyprint';
+}
+
+// run pretty print magic
+prettyPrint();

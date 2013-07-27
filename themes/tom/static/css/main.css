@@ -36,6 +36,7 @@ body {
 
 #content-header #aboutme {
   border-top: 1px solid black;
+  padding-top: 10px;
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -66,11 +67,26 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   font-size: 20pt;
-  border-bottom: 1px solid black;
+}
+
+#article-abstract {
+  font-family: Arial;
+  font-size: 11pt;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+
+#article-abstract a {
+  color: black;
+}
+
+#article-abstract a:hover {
+  color: red;
 }
 
 #article-date {
   float: right;
+  margin-top: 5px;
 }
 
 #article-title a {
