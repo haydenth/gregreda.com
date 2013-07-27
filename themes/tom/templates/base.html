@@ -12,6 +12,12 @@
     <!-- prettify stylesheet -->
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/vibrant-ink.css" type="text/css" />
 
+    <!-- mathjax via CDN because im lazy -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
     <!--[if IE]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -26,8 +32,10 @@
   </head>
   <body id="index" class="home">
     <div id="content-header">
-      <img src="{{ SITEURL }}/theme/images/workinghard.jpg" width=325>
-      <div id="myname"><a href="{{ SITEURL }}"</a>Tom Hayden</a></div>
+      <img src="{{ SITEURL }}/theme/images/workinghard.jpg" width="325" alt="picture of me">
+      <div id="myname">
+        <a href="{{ SITEURL }}">Tom Hayden</a>
+      </div>
 
       <div id="content-header-icons">
         <a href='http://www.linkedin.com/in/haydenth' target="_blank"><i class="icon-linkedin icon-2x"></i></a>
@@ -39,6 +47,7 @@
       <div id="aboutme">
         Location: Chicago, Illinois <br>
         Job: Senior Data Developer <br>
+        Blog Topics: Math, CS, Stats, Human Things <br>
         Tacos: Yes<br>
       </div>
       <div id="thanks">
@@ -50,6 +59,8 @@
       {% block content %}
       {% endblock %}
     </div>
+
+  {% include "analytics.html" %}
 
   </body>
   <!-- code prettifier -->

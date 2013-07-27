@@ -18,21 +18,8 @@ While it was an improvement over v1 (Tommy Hayden's Homepage on Geocities - no s
 
 * I needed some kind of non-wordpress blogging system that wouldn't be hacked every few months
 * I need it to look like it was built by an adult and not a child or spam engine, so I could reference it in future job applications
-* I wanted it to be statically hosted on S3 - I pay Dreamhost too much money for PHP hosting for a simple website
+* I wanted it to be statically hosted on S3 - I pay Dreamhost for PHP hosting
 * I wanted to have [Google's Code Prettifier](https://code.google.com/p/google-code-prettify/)
 * I want a way to easily include math characters via some kind of LaTeX plugin
 
 It seemed like I could accomplish most of these feats by using some of my colleague [Greg Reda](http://www.gregreda.com)'s site, which he so kindly posted to GitHub. 
-
-The final challenge was getting Google's Prettifier to work. Since the pages were statically generated via templates and Prettify requires you to set the class of the `<code>` elements to "prettyprint" in order to work nice. All I had to do was write a little custom js to add a class to all code elements and plop it at the bottom of my html.
-
-```
-// add "prettyprint" to all the <pre> tags
-var sections = document.getElementsByTagName('pre');
-for(var i = 0; i < sections.length; ++i) {
-  sections[i].className = 'prettyprint';
-}
-
-// run pretty print magic
-prettyPrint();
-```

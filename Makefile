@@ -17,7 +17,7 @@ SSH_PORT=22
 SSH_USER=root
 SSH_TARGET_DIR=/var/www
 
-S3_BUCKET=tomhayden3
+S3_BUCKET=tomhayden3.com
 
 DROPBOX_DIR=~/Dropbox/Public/
 
