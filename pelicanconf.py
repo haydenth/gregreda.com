@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Tom Hayden'
 SITENAME = u'Tom Hayden'
-SITEURL = 'http://www.tomhayden3.com'
+SITEURL = 'http://tomhayden3.com/'
 TIMEZONE = 'America/Chicago'
 DEFAULT_LANG = u'en'
 

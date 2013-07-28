@@ -1,5 +1,5 @@
 Title: MathJax & LaTeX
-Date: 2013-07-28
+Date: 2013-07-27
 Slug: math
 Icon: icon-plus
 Abstract: I talk about how I got math to work on my website via LaTeX + MathJax Javsacript library. It is super easy.
