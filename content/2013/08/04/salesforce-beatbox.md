@@ -6,6 +6,11 @@ Abstract: I talk about how to use python's beatbox module to access Salesforce (
 
 I've been asked a few times in my career to help extract data to/from Salesforce. It's not a sexy job but someone has to do it and their SOAP API actually *isn't as bad as you might think*. Even better there is a great python module, [beatbox](https://pypi.python.org/pypi/beatbox) which lets you make calls via the API and run queries. Some of the stuff I post about here is in their documentation already and I'm just repeating it here for completeness.
 
+I assume the following
+
+* You have an account with a login and a real life Salesforce account (you poor soul) that has adequate API permissions
+* You can install python 2.7 and the beatbox module
+
 ## SOQL
 
 The first thing a developer will ask when accessing Salesforce is -  how can I query directly against the database? Is there a SQL layer? The answer to this is *sort of*. There is no real-time database you can login to and run queries. However, the guts of Salesforce are structured in a relational way and you can throw a query against their API and get results back, using their SQL-like language SOQL (I pronounce it *soh-quill*, I have no idea how it's supposed to be pronounced). 
