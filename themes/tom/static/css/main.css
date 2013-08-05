@@ -97,3 +97,9 @@ body {
 #article-title a:hover {
   color: red;
 }
+
+h2 {
+  border-bottom: 1px solid black;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+}

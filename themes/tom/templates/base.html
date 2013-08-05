@@ -29,6 +29,8 @@
       <link rel="stylesheet" type="text/css" media="all" href="{{ SITEURL }}/css/ie6.css"/>
     <![endif]-->
 
+  {% include "analytics.html" %}
+
   </head>
   <body id="index" class="home">
     <div id="content-header">
@@ -46,9 +48,10 @@
       </div>
       <div id="aboutme">
         Location: Chicago, Illinois <br>
-        Job: Senior Data Developer <br>
         Blog Topics: Math, CS, Stats, Human Things <br>
         Tacos: Yes<br>
+        <br>
+        Disclaimer: I am an expert of nothing and make mistakes. If you find them, let me know in the comments (but don't be a dick)
       </div>
       <div id="thanks">
         Site built with Pelican, hosted S3. Magic icons thanks to <a href='http://fortawesome.github.io/Font-Awesome'><i class='icon-flag'></i></a> and pretty fonts thanks to <a href='http://www.google.com/fonts/'>Google Fonts</a>.
@@ -59,8 +62,6 @@
       {% block content %}
       {% endblock %}
     </div>
-
-  {% include "analytics.html" %}
 
   </body>
   <!-- code prettifier -->
