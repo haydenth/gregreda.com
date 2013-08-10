@@ -34,11 +34,12 @@ service.login('your_username', 'your_password')  # login using your sf credentia
 query_result = service.query("SELECT Id, Name FROM Account")
 records = query_result['records']  # dictionary of results!
 total_records = query_result['size']  # full size of results
+query_locator = query_result['queryLocator']  # get the mystical queryLocator
 
 # loop through, pulling the next 500 and appending it to your records dict
 while query_result['done'] is False and len(records) < total_records:
   query_result = self._service.queryMore(query_locator)
-  query_locator = query_result['queryLocator']  # get the mystical queryLocator
+  query_locator = query_result['queryLocator']  # get the updated queryLocator
   records = records + query_result['records']  # append to records dictionary
 ```
 Now, when this finishes you should have *all* of the records from your Account table. Note that there is no error catching on this, so if it fails for some reason; you're out of luck. I suggest building in some kind of try and catch loop, since the Salesforce API can be periodically spotty.
