@@ -2,6 +2,7 @@ Title: Cantor's Infinities
 Date: 2013-08-06
 Slug: infinity-proof
 Icon: icon-plus
+Status: Draft
 Abstract: I talk about one of my favorite (and easiest) proofs - Cantor's proof that there is more than one infinity.
 
 Since I wasn't a math undergrad, I didn't learn this proof until graduate school when I TA'ed discrete math. It's still one of my favs because of it's simplicity and it blows my mind that between 400 BC, when man first started talking about infinity and this proof in the 19th century, we didn't know this.

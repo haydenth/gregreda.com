@@ -2,6 +2,7 @@ Title: Amazon RedShift
 Date: 2013-08-13
 Slug: redshift
 Icon: icon-gears
+Status: Draft
 Abstract: As a data person, I take a look at Amazon Redshift and investigate its magical powers (or lack thereof)
 
 A common practical problem that we encounter in the world of data analysis is the following:
