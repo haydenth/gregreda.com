@@ -103,3 +103,8 @@ h2 {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
 }
+
+#article-abstract {
+  font-style: italic;
+  font-size: 10pt;
+}
