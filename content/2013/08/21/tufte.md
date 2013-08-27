@@ -4,7 +4,7 @@ Slug: tufte
 Icon: icon-thumbs-up
 Abstract: I went to a one-day data visualization conference put on by Edward Tufte in Chicago. I quickly collect my thoughts and review the conference. I recommend it to data nerds and managers. Design folks might not enjoy it as much because they will be familiar with the content.
 
-My employer was kind enough to send me to one of Edward Tufte's one-day data visualization courses. I wasn't sure what I'd get out of it but I was a little freaked out at reading some of the [bad reviews](http://eagereyes.org/criticism/edward-tufte-one-day-course).
+[My employer](http://www.grubhub.com) was kind enough to send me to one of [Edward Tufte's one-day data visualization courses](http://www.edwardtufte.com/tufte/courses). I wasn't sure what I'd get out of it but I was a little freaked out at reading some of the [bad reviews](http://eagereyes.org/criticism/edward-tufte-one-day-course).
 
 I don't have much experience with data visualization, besides a little experience with ggplot2. I can do basic plots but I know next to nothing of the theory or general ideas about visualization. I consider myself a data guy and definitely not a designer. But I do have a general interest in becoming a better designer and a general love for good design. In high school, I worked at a map store and I used to spend hours gazing at the awesome design of some maps.
 
