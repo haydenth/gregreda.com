@@ -1,7 +1,7 @@
 Title: Accessing Salesforce via Python
 Date: 2013-08-04
 Slug: salesforce-python
-Icon: icon-cloud
+Icon: fa-cloud
 Abstract: I talk about how to use python's beatbox module to access Salesforce (via SOAP API calls and via SOQL Queries)
 
 I've been asked a few times in my career to help extract data to/from Salesforce. It's not a sexy job but someone has to do it and their SOAP API actually *isn't as bad as you might think*. Even better there is a great python module, [beatbox](https://pypi.python.org/pypi/beatbox) which lets you make calls via the API and run queries. Some of the stuff I post about here is in their documentation already and I'm just repeating it here for completeness.

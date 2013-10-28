@@ -1,7 +1,7 @@
 Title: Tufte Data Viz Talk Review / Thoughts
 Date: 2013-08-21
 Slug: tufte
-Icon: icon-thumbs-up
+Icon: fa-thumbs-up
 Abstract: I went to a one-day data visualization conference put on by Edward Tufte in Chicago. I quickly collect my thoughts and review the conference. I recommend it to data nerds and managers. Design folks might not enjoy it as much because they will be familiar with the content.
 
 [My employer](http://www.grubhub.com) was kind enough to send me to one of [Edward Tufte's one-day data visualization courses](http://www.edwardtufte.com/tufte/courses). I wasn't sure what I'd get out of it but I was a little freaked out at reading some of the [bad reviews](http://eagereyes.org/criticism/edward-tufte-one-day-course).

@@ -1,7 +1,7 @@
 Title: Cantor's Infinities
 Date: 2013-08-06
 Slug: infinity-proof
-Icon: icon-plus
+Icon: fa-plus
 Status: Draft
 Abstract: I talk about one of my favorite (and easiest) proofs - Cantor's proof that there is more than one infinity.
 

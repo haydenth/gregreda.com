@@ -1,7 +1,7 @@
 Title: New Website (tomhayden3.com v3)
 Date: 2013-07-26
 Slug: new-website
-Icon: icon-undo
+Icon: fa-undo
 Abstract: I introduce my new website, born through shame about my old one. I talk about how I built it and some of the challenges I encountered.
 
 Every ten years or so, I feel the urge to re-do my website.  Mostly, this is due to my old website being an embarassment - see screenshot below.

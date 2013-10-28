@@ -1,7 +1,7 @@
 Title: Bulk Updating Records in Salesforce (with beatbox)
 Date: 2013-09-05
 Slug: salesforce-beatbox-multi
-Icon: icon-cloud
+Icon: fa-cloud
 Abstract: I talk about how to use python's beatbox module to bulk update a bunch of records at the same time.
 
 In a [previous post](|filename|../../08/04/salesforce-beatbox.md), I went over some basic salesforce / beatbox basics: how to use beatbox, how to run SOQL queries, and how to update/delete records via the API. Since then, I got a question (I love questions) - is there a way to do a bulk update of many records at the same time using beatbox? The answer: Yes (but you need to make the data structures nice).
