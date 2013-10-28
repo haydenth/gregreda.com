@@ -33,4 +33,4 @@ RELATIVE_URLS = True
 THEME = "./themes/tom"
 CSS_FILE = "main.css"
 
-STATIC_PATHS = ['images', 'data']
+STATIC_PATHS = ['images', 'data', 'html']

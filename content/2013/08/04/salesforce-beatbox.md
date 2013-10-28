@@ -83,7 +83,7 @@ By default, Beatbox will go straight to your production Salesforce instance. Sin
 import beatbox
 
 service = beatbox.PythonClient()  # instantiate the object
-service.serverUrl = self.SANDBOX_URL = 'https://test.salesforce.com/services/Soap/u/20.0'
+service.serverUrl = 'https://test.salesforce.com/services/Soap/u/20.0'
 service.login('your_username', 'your_password')  # login using your sf credentials
 
 ## do your SOQL or whatever now

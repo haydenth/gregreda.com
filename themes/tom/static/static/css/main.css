@@ -1,0 +1,29 @@
+body {
+  font-family: Arial;
+}
+
+#tom-title {
+  font-family: 'Josefin Slab', serif;
+  font-size: 30px;
+  padding: 10px;
+}
+
+.subtitle {
+  font-family: 'Josefin Slab', serif;
+  font-size: 22px;
+  padding: 10px;
+}
+
+#tom-title a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#tom-header {
+  padding: 10px;
+}
+
+#content {
+  padding: 10px;
+}
