@@ -7,6 +7,24 @@ Abstract: I give some code examples of how to do magic with threading python
 What is Threading / Why You Should Care
 ---------------------
 In most languages, you operate in a pretty linear fashion - do x, then do y, then z, etc.  Sometimes, there are cases where this might not be the most efficient -- imagine you want to crawl a bunch of websites or something and you don't care what order they are done in and the tasks operate most independently of eachother. In this case, you might want to consider using threads and spawning off child "threads" for each individual thing you want to do.
+```
+            +
+            |
+            |+------> +->
+            |       +    +
+       main |       |    |
+     thread |       |    |child threads
+            |       |    |
+            |       |    |
+            |       |    |
+            |<----+ v <--+
+            |
+            v
+```
+Personally, I usually end up using threading when I need to do:
+
+* Crawling multiple websites on many domains - ie I want to scrape a bunch of sites that are not hosted in the same place.
+* Doing computation that can be done independently; usually, I end up using threading when I am doing de-duping or processes that do not need to work together.
 
 Example / Technique 1
 ----------------------
