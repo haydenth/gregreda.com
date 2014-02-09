@@ -38,4 +38,4 @@ So now I have a bunch of relatively worthless coins (the fx rate between DOGE an
 
 So, unlike SecondLife, which has a central monetary body controlling the currency, digital currencies seem like [Milton Friedman's wet dream](http://en.wikipedia.org/wiki/Friedman's_k-percent_rule) - there is enough central control (in the algorithms) to ensure fixed inflation but otherwise, almost every form of policy is moot. I can't see a way that the government cannot easily monitor or tax this stuff except at the point where the coins and turned into cash and even then, if you're a fraudster and businesses accept bitcoins, you'll just live a second life off the grid (see what I did there?)
 
-I'm really curious to see how this stuff turns out. It is either our future currency (in 2-3 generations) or the new Second Life.
+I'm really curious to see how this stuff turns out. It is either our future currency (in 2-3 generations) or the new Second Life. It's certainly going to require some clever policy magic from the government in order to give fair tax treatment.
