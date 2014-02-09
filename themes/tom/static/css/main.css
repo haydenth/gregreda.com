@@ -108,3 +108,8 @@ h2 {
   font-style: italic;
   font-size: 10pt;
 }
+
+#article-body img {
+  display: inline;
+  float: right;
+}
