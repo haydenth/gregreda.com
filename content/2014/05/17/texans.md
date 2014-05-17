@@ -25,6 +25,7 @@ burpees are a good substitute if you can't run hurdles?
 * Vitamins are a waste of time if your diet is good. In fact, if you're thinking about eating a vitamin, just drink some water and eat a fruit.
 * They recommend players do weight exercises in the following order: Neck, Hips and Legs, Midsection, Torso, and Arms. I imagine this is probably to discourage the guys who spend years just doing bench presses and to get them to focus on other things that actually benefit their health. Probably in general, a good heuristic, though.
 * **Starvation diets are a bad idea** and a bad way to lose weight since your body will just start storing more away.
+* Anyone that tries to sell you a magic diet, pill, shoe, hat, nutrition plan is full of shit. There is no easy path. Deal with it.
 
 Near Maximal Strength
 -----------------------
