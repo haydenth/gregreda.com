@@ -2,6 +2,7 @@ Title: Python Threading (Part 1)
 Date: 2013-12-10
 Slug: threading-one
 Icon: fa-code
+Tags: python, code, threading
 Abstract: I give some code examples of how to do magic with threading python
 
 What is Threading / Why You Should Care

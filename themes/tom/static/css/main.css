@@ -113,3 +113,25 @@ h2 {
   display: inline;
   float: right;
 }
+#tagcloud {
+  border: 1px solid black;
+  padding: 10px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  color: white;
+  background: black;
+}
+
+#tagcloud i {
+  color: white;
+}
+
+#tagcloud a {
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+}
+
+#tagcloud a:hover {
+  color: red;
+}

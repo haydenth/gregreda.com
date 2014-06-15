@@ -1,6 +1,7 @@
 Title: Bulk Updating Records in Salesforce (with beatbox)
 Date: 2013-09-05
 Slug: salesforce-beatbox-multi
+Tags: salesforce, python, beatbox
 Icon: fa-cloud
 Abstract: I talk about how to use python's beatbox module to bulk update a bunch of records at the same time.
 

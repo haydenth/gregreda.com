@@ -2,6 +2,7 @@ Title: MathJax & LaTeX
 Date: 2013-07-27
 Slug: math
 Icon: fa-plus
+Tags: math, mathjax, web_design
 Abstract: I talk about how I got math to work on my website via LaTeX + MathJax Javsacript library. It is super easy.
 
 Since I have this new awesome blog now, I want to be able to occasionally share math equations or post about proofs. Therefore, I need some kind of LaTeX based tool to show equations. This used to be a huge pain in the ass - you would write the equations, compile it using a huge gigabyte sized LaTeX package and then have to copy the images of the equations to display. Yuck.

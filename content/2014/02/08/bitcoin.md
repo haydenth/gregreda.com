@@ -2,6 +2,7 @@ Title: Dogecoin (ie bitcoin, ie tomcoin) Thoughts
 Date: 2014-02-08
 Slug: bitcoin
 Icon: fa-money
+Tags: bitcoin, secondlife
 Abstract: In a moment of curious insanity, I start poking around with digital currencies -- in particular Dogecoin. 
 
 Digital currencies right now feel like Second Life circa 2007 - full of early adopters/weirdos, all over the press, in a legally specious gray area, and maybe starting to get some traction. Of course, for Second Life, the fun police showed up and [banned gambling](http://techcrunch.com/2007/07/25/second-life-bans-gambling-following-fbi-investigation/) and had all sorts of [issues with manipulation of their digital currency](http://gwynethllewelyn.net/2013/05/17/financial-crisis-in-second-life-ended-linden-lab-launches-linden-dollar-authorized-reseller-program/). Back in 2007/08 when I was in graduate school at Michgan, we talked a bit about SecondLife and digital currencies -- the school even had some property in the virtual world (it wasn't far from a virtual penis store, the *de rigueur* of SecondLife).

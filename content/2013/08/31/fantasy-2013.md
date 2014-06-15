@@ -2,6 +2,7 @@ Title: 2013 Fantasy Dashboard & Defensive Predictions
 Date: 2013-08-31
 Slug: 2013-fantasy
 Icon: fa-bar-chart
+Tags: football, fantasy_football, statistics
 Abstract: I provide a link and talk about my 2013 fantasy dashboard, which is public this year. Also, I talk about a defensive model that goes into the dashboard, predicting point estimates of team defensive performance.
 
 Sweet New Dashboard

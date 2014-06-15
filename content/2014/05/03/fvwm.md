@@ -2,6 +2,7 @@ Title: FVWM Old School Linux Window Manager
 Date: 2014-05-03
 Slug: fvwm
 Icon: fa-windows
+Tags: fvwm, linux, knuth
 Abstract: I talk about an experiment I've been running with using fvwm, an old school windows manager for linux. If you're not a linux user, don't bother reading this.
 
 This blog post makes me feel a little bit like: *"Oh look, I have a sweet work environment! Going to go surf twitter for a while now!"*. There is a webcomic out there that I am looking for about this - first frame was someone who was exclaiming "Finally, I've got the perfect work environment" but can't find anything to write. The next few frames were famous people who wrote great works in their basements, under fire, etc. If anyone can find that comic, comment please.

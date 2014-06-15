@@ -2,6 +2,7 @@ Title: Todo.txt Review
 Date: 2013-10-29
 Slug: tododottxt
 Icon: fa-check-square-o
+Tags: organization, mac, dropbox
 Abstract: I talk about my attempts to use todo.txt (the software) as a tool to organize my life.
 
 Cool Sign at Facebook

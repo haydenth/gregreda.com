@@ -2,6 +2,7 @@ Title: A Statistics Question
 Date: 2014-03-29
 Slug: bracket
 Icon: fa-superscript
+Tags: statistics, physics, coinflipping, stats, data
 Abstract: I propose a simple statistics question and ponder on possible solutions and push back on some notions of predictive analytics.
 
 Simple Statistics Problem

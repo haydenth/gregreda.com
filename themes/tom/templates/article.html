@@ -9,9 +9,11 @@
   </div>
 
 {% if article.tags %}
-  {% for tag in article.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>
-  {% if not loop.last %},{% endif %}
+  <div id='tagcloud'>
+  {% for tag in article.tags %}
+    <i class='fa fa-tag'></i><a href="/tag/{{ tag }}/">{{ tag }}</a>
   {% endfor %}
+  </div>
 {% endif %}
 
 {% include "disqus.html" %}
