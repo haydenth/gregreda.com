@@ -13,4 +13,22 @@ This is great if you have any dietary stuff going on or just want to eat healthy
 
 Chipotle for Indian
 -------------------
-So recently, they opened up a new 
+![mmmm](|filename|/images/bowl.jpg)
+
+So recently, they opened up a new place on Wells, [NaanSense](http://www.eatatnaansense.com/). I cannot speak highly enough of this place. It is SO GOOD and relatively paleo friendly. I always order the following:
+
+Salad Bowl
+
+  * with Lamb
+  * Tikki sauce (one scoop only!)
+  * Tomatos
+  * Cucumbers
+  * Onions
+
+It comes out to about $10, which is a little pricey but not that far from average lunch price in the loop. The only downside that, whether you get it to-go or eat-in, they give it to you in an enormous plastic container which I am pretty sure they don't recycle. The container is impossible to open up and I end up basically crushing the top until I can pry it open.
+
+The vinadloo sauce is also amazing but it is *insanely hot*. I went there to have lunch with a colleague and was unable to talk because the sauce was too hot.
+
+It's also pretty paleo friendly - you can avoid all carbs if you tell them not to include the naan (the bowl comes with Naan) and the meat is really delicious and seems pretty lean. Of course, you never know what's in the sauces or meat preparation but if you're not too picky (I'm not) then it's a solid healthy downtown lunch.
+
+You can also [Order from them on GrubHub!](https://www.grubhub.com/chicago/naansense-north-wells/)
