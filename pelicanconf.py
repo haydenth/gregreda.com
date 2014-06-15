@@ -21,8 +21,7 @@ TAG_SAVE_AS = "tag/{slug}/index.html"
 # Blogroll
 LINKS =  (('Pelican', 'http://getpelican.com/'),
           ('Python.org', 'http://python.org/'),
-          ('Jinja2', 'http://jinja.pocoo.org/'),
-          ('You can modify those links in your config file', '#'),)
+          ('Jinja2', 'http://jinja.pocoo.org/'))
 
 # Social widget
 SOCIAL = (('You can add links in your config file', '#'),
@@ -33,4 +32,5 @@ DEFAULT_PAGINATION = False
 RELATIVE_URLS = True
 THEME = "./themes/tom"
 CSS_FILE = "main.css"
-STATIC_PATHS = ('html/fantasy_2013','images', 'data')
+STATIC_PATHS = ['html/fantasy_2013','images', 'data', 'extra/favicon.ico']
+EXTRA_PATH_METADATA = {'extra/favicon.ico': {'path': 'favicon.ico'}}
