@@ -7,6 +7,13 @@
   <div id='article-body'>
     {{ article.content }}
   </div>
+
+{% if article.tags %}
+  {% for tag in article.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>
+  {% if not loop.last %},{% endif %}
+  {% endfor %}
+{% endif %}
+
 {% include "disqus.html" %}
 
 {% endblock content %}
