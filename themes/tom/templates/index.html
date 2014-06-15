@@ -2,17 +2,23 @@
 
 {% block content %}
 
+  <table border=0>
   {% for article in articles %}
-     <div id="article">
-       <div id="article-title">
-          <a href="{{ article.url }}" title="{{ article.title }}">
-            <i class="fa {{ article.icon }} fa-lg"></i>
-            {{ article.title }}
+  <tr>
+    <td>
+      <div id='indextitle'>
+      <a href="{{ article.url }}" title="{{ article.title }}">
+        <i class="fa {{ article.icon }} fa-lg"></i>
+          {{ article.title }}
           </a>
-         <div id="article-date">{{ article.locale_date }}</div>
-       </div>
+      </div>
+    </td>
+    </tr><tr>
+      <td>
        <div id="article-abstract">{{ article.abstract }} <a href='{{article.url}}'>Read</div>
-     </div>
+      </td>
+    </tr>
   {% endfor %}
+  </table>
 
 {% endblock content %}

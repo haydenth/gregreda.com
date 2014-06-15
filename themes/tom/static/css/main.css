@@ -109,10 +109,6 @@ h2 {
   font-size: 10pt;
 }
 
-#article-body img {
-  display: inline;
-  float: right;
-}
 #tagcloud {
   border: 1px solid black;
   padding: 10px;
@@ -133,5 +129,15 @@ h2 {
 }
 
 #tagcloud a:hover {
+  color: red;
+}
+
+#indextitle {
+  
+}
+#indextitle a {
+  color: black;
+}
+#indextitle a:hover {
   color: red;
 }
