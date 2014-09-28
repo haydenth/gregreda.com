@@ -36,7 +36,7 @@ Follow these steps to make the delicious crust!
 * Pre-bake the crust for 7 mins on 475
 * Pull crust out of oven. It should be tad bit crispy. Add sauce + toppings.
 * Cook for 12-15 mins on 475.
-* Let cool for a few mins, cook and eat. It should be very dense and delicious and hopefully rise nicely.
+* Let cool for a few mins, slice, and eat. It should be very dense and delicious and hopefully rise nicely.
 
 Pro-tips
 -------------------
