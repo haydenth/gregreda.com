@@ -141,3 +141,7 @@ h2 {
 #indextitle a:hover {
   color: red;
 }
+
+.even {
+  background-color: #eeeeee;
+}

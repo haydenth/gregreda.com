@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-  <table border=0>
+  <h1>Musings, Writings, and Other Thoughts </h1>
+  <table border=0 cellspacing=0 cellpadding=0>
   {% for article in articles %}
   <tr>
-    <td>
-      <div id='indextitle'>
+    <td class="{{ loop.cycle('odd', 'even') }}">
+      {{ article.date.strftime('%Y-%m-%d')}}
       <a href="{{ article.url }}" title="{{ article.title }}">
-        <i class="fa {{ article.icon }} fa-lg"></i>
           {{ article.title }}
           </a>
-      </div>
     </td>
     </tr><tr>
-      <td>
-       <div id="article-abstract">{{ article.abstract }} <a href='{{article.url}}'>Read</div>
-      </td>
+      <td class="{{ loop.cycle('odd', 'even') }}">
+         <div id="article-abstract">
+         <i class="fa {{ article.icon }} fa-lg"></i>
+         {{ article.abstract }} <a href='{{article.url}}'>Read</div>
+       </td>
     </tr>
   {% endfor %}
   </table>
