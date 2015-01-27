@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+    <title>{% block title %}{% endblock %}</title>
+
     <meta charset="utf-8" />
+    <meta name="author" content="Tom Hayden">
+    <meta property="og:title" content="Tom Hayden">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.tomhayden3.com">
+    <meta property="og:image" content="http://www.tomhayden3.com/theme/images/workinghard.jpg">
+    <meta property="og:description" content="{{ DESCRIPTION }}">
+
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" type="text/css" />
 
     <!-- font awesome shit -->
