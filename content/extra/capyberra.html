@@ -1,0 +1,98 @@
+<html>
+<head>
+  <style>
+      .sprite { position:relative; } // needed for the img to be free to move around
+  </style>
+</head>
+
+<body>
+<script>
+  var guid = (function() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+                 .toString(16)
+                 .substring(1);
+    }
+    return function() {
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+             s4() + '-' + s4() + s4() + s4();
+    };
+  })();
+
+  var Turtle = function() { };
+  Turtle.prototype.PlaceRandomly = function() {
+    this.id = guid();
+    img = document.createElement("img");
+    img.src = "http://fc03.deviantart.net/fs71/f/2013/169/b/d/capybara_pixeleado_by_rndzvs-d69kdwf.png"
+    img.id = this.id;
+    img.width = 40;
+    img.height= 40;
+    img.className = 'sprite';
+    img.style.top = Math.floor(Math.random() * (100))
+    img.style.left = Math.floor(Math.random() * (100))
+    window[this.id] = img
+    document.body.appendChild(img);
+  };
+  Turtle.prototype.Move = function(id, direction) {
+    realizedDirection = direction();
+    img = window[id];
+
+    // go up
+    if (realizedDirection > 0 & realizedDirection <= 0.25) {
+      current_location = parseInt(img.style.top.replace("px",""));
+      new_location = current_location - 5;
+      if (new_location > 0) {
+        img.style.top = new_location;
+      } else {
+        img.style.top = 0;
+      };
+    };
+    // down 
+    if (realizedDirection > 0.25 & realizedDirection <= 0.5) {
+      current_location = parseInt(img.style.top.replace("px",""));
+      new_location = current_location + 5;
+
+      if (new_location > 0) {
+        img.style.top = new_location;
+      } else {
+        img.style.top = 0;
+      };
+    };
+    if (realizedDirection > 0.5 & realizedDirection <= 0.75) {
+      current_location = parseInt(img.style.left.replace("px",""));
+      new_location = current_location - 5;
+
+      if (new_location > 0) {
+        img.style.left = new_location;
+      } else {
+        img.style.left = 0;
+      };
+    };
+    if (realizedDirection > 0.75 & realizedDirection <= 1.0) {
+      current_location = parseInt(img.style.left.replace("px",""));
+      new_location = current_location + 5;
+
+      if (new_location > 0) {
+        img.style.left = new_location;
+      } else {
+        img.style.left = 0;
+      };
+    };
+  };
+  Turtle.prototype.MoveRandomly = function() {
+    setInterval(this.Move, 50, this.id, Math.random);
+  };
+
+  var t1 = new Turtle();
+  t1.PlaceRandomly();
+  t1.MoveRandomly();
+
+  var t2 = new Turtle();
+  t2.PlaceRandomly();
+  t2.MoveRandomly();
+
+
+</script>
+
+</body>
+</html>
