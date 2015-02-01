@@ -32,5 +32,5 @@ DEFAULT_PAGINATION = False
 RELATIVE_URLS = True
 THEME = "./themes/tom"
 CSS_FILE = "main.css"
-STATIC_PATHS = ['html/fantasy_2013','images', 'data', 'extra/favicon.ico']
+STATIC_PATHS = ['html/fantasy_2013','images', 'data', 'extra/favicon.ico', 'extra']
 EXTRA_PATH_METADATA = {'extra/favicon.ico': {'path': 'favicon.ico'}}
