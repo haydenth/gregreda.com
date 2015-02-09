@@ -2,6 +2,7 @@ Title: FVWM Old School Linux Window Manager
 Date: 2014-05-03
 Slug: fvwm
 Icon: fa-windows
+image: code.jpg
 Tags: fvwm, linux, knuth
 Abstract: I talk about an experiment I've been running with using fvwm, an old school windows manager for linux. If you're not a linux user, don't bother reading this.
 

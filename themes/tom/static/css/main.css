@@ -3,9 +3,6 @@ body {
 }
 
 #content-header-icons {
-  background-color: white;
-  width: 100%;
-  text-align: right;
   padding-top: 10px;
 }
 
@@ -19,19 +16,15 @@ body {
 }
 
 #content-header {
-  background-color: white;
+  border-bottom: 3px solid black;
   padding: 5px;
-  margin-left: 20px;
-  margin-top: 25px;
   color: black;
-  float: left;
-  width: 325px; 
 }
 
 #content-header #myname {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 32px;
 }
 
 #content-header #aboutme {
@@ -43,6 +36,14 @@ body {
 #content-header #thanks {
   margin-top: 30px;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+#content-header img {
+  border: 2px solid black;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -khtml-border-radius: 30px;
+  -webkit-border-radius: 30px;
 }
 
 #content-body {
@@ -145,3 +146,24 @@ h2 {
 .even {
   background-color: #eeeeee;
 }
+
+#main-contain {
+}
+
+.imagebox {
+  height: 220px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.imagebox #article-title {
+  position: absolute;
+  bottom: 0;
+  font-size: 32pt;
+  padding-left: 15px;
+}
+.imagebox #article-abstract {
+  position: absolute;
+  bottom: 0;
+  }

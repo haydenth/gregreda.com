@@ -3,6 +3,7 @@ Date: 2015-01-24
 Slug: patriots
 Icon: fa-soccer-ball-o
 Tags: football, patriots, data analysis
+Image: football.jpg
 Abstract: I break down an analysis that claimed the Patriots have a 1 in 16,233.77 likelyhood of observing the number of fumbles they had in 2010-2014. Another blogger declared this as "impossible" - I attempt to show the core assumption is flawed.
 
 The Problem

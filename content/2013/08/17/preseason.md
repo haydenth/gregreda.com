@@ -2,6 +2,7 @@ Title: NFL - Do Preseason Outcomes Matter?
 Date: 2013-08-19
 Slug: preseason
 Icon: fa-bar-chart-o
+Image: football.jpg
 Tags: football, preseason, nfl, statistics
 Abstract: I look at NFL data from 2001-2012 and try to guess whether the preseason matters at all. Conclusion: from a team performance standpoint, I don't see any strong indicators that it matters.
 

@@ -2,6 +2,7 @@ Title: 10 Things I Learned from the Houston Texans
 Date: 2014-05-17
 Slug: texans-fitness
 Icon: fa-stethoscope
+Image: football.jpg
 Tags: health, paleo, football
 Abstract: I don't usually talk about fitness on my blog but I post a summary of 10 things I learned from the Houston Texans' player fitness guide. I know talking about fitness is insufferable. I am sorry.
 

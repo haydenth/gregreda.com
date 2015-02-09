@@ -2,6 +2,7 @@ Title: Accessing Salesforce via Python
 Date: 2013-08-04
 Slug: salesforce-python
 Icon: fa-cloud
+Image: code.jpg
 Tags: python, salesforce, beatbox, code
 Abstract: I talk about how to use python's beatbox module to access Salesforce (via SOAP API calls and via SOQL Queries)
 
