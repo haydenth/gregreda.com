@@ -23,7 +23,7 @@ body {
 
 #content-header #myname {
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: bold;
+  font-weight: '300';
   font-size: 32px;
 }
 
@@ -167,3 +167,15 @@ h2 {
   position: absolute;
   bottom: 0;
   }
+
+.navbar {
+  margin-top: 0;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0 0 0 0;
+  border-bottom: 2px solid black;
+}
+
+.navbar a {
+  color: black;
+}

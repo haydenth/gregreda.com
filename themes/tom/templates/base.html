@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" type="text/css" />
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- font awesome shit -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 
     <!-- prettify stylesheet -->
@@ -49,35 +49,23 @@
   </head>
 
   <body id="index" class="home">
-    <div class="row" id="content-header">
-      <div class='col-md-1'>
-        <img src="{{ SITEURL }}/theme/images/workinghard.jpg" width="80" alt="picture of me">
-      </div>
-      <div class='col-md-3'>
-        <div id='myname'><a href="/">Tom Hayden</a></div>
-      </div>
-      <div class='col-md-2'>
-        <a href='http://www.linkedin.com/in/haydenth' target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
-        <a href='http://www.github.com/haydenth' target="_blank"><i class="fa fa-github fa-2x"></i></a>
-        <a href='http://www.twitter.com/haydenth' target="_blank"><i class="fa fa fa-twitter fa-2x"></i></a>
-        <a href='http://www.facebook.com/haydenth' target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
-        <a href='mailto:thayden@gmail.com?subject=go+pound+sand'><i class="fa fa-envelope fa-2x"></i></a>
-        </div>
-        <div class='col-md-4'>
-        <div id="aboutme_new">
-          Location: Chicago, Illinois <br>
-          Send me <a href='http://dogecoin.com/get-started'>$DOGE</a>: DSnhpH9HXZZMQhj2TeWmFhiky8zUNuV9Fu<br>
+    <nav class='navbar navbar-toggleable-xl mx-auto sticky-top'>
+      <div class='container'>
+        <a class="navbar-brand" href="/">Tom Hayden's Blog</a>
+
+        <div class='col'>
+          <div class=' float-right'>
+          <a href='http://www.linkedin.com/in/haydenth' target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+          <a href='http://www.github.com/haydenth' target="_blank"><i class="fa fa-github fa-lg"></i></a>
+          <a href='mailto:thayden@gmail.com?subject=go+pound+sand'><i class="fa fa-envelope fa-lg"></i></a>
+          </div>
         </div>
       </div>
-    </div>
+    </nav>
 
     <div class="container" id='main-contain'>
-
-    <div class='row'>
       {% block content %}
       {% endblock %}
-    </div>
-
   </div>
 
   </body>

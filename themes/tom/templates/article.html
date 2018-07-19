@@ -10,23 +10,22 @@
     </div>
   </div>
   {% else %}
-  <div id='article-title'>
-    <i class="fa {{ article.icon }} fa-lg"></i> {{ article.title }}
+  <div class="row imagebox" style="background-color: #aeaeae;">
+    <div id='article-title'>
+      {{ article.title }}
+    </div>
   </div>
   {% endif %}
 
-  <div id='article-abstract'>Abstract: {{ article.abstract }}</div>
+  {% if article.warning %}
+  <div style='margin-top: 5px' class='alert alert-danger'>
+    {{article.warning}}
+  </div>
+  {% endif %}
+
   <div id='article-body'>
     {{ article.content }}
   </div>
-
-{% if article.tags %}
-  <div id='tagcloud'>
-  {% for tag in article.tags %}
-    <i class='fa fa-tag'></i><a href="/tag/{{ tag }}/">{{ tag }}</a>
-  {% endfor %}
-  </div>
-{% endif %}
 
 {% include "disqus.html" %}
 
